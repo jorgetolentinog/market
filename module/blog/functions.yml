@@ -1,0 +1,6 @@
+blog-http-list:
+  handler: module/blog/events/http/list.handler
+  events:
+    - http:
+        path: /blog
+        method: GET

@@ -1,0 +1,20 @@
+product-http-list:
+  handler: module/product/events/http/list.handler
+  events:
+    - http:
+        path: /product
+        method: GET
+
+product-http-create:
+  handler: module/product/events/http/create.handler
+  events:
+    - http:
+        path: /product
+        method: POST
+
+product-http-retrieve:
+  handler: module/product/events/http/retrieve.handler
+  events:
+    - http:
+        path: /product/{id}
+        method: GET

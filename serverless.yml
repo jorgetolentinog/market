@@ -1,0 +1,23 @@
+service: market
+frameworkVersion: "2"
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  apiGateway:
+    shouldStartNameWithService: true
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+
+functions:
+  - ${file(./module/account/functions.yml)}
+  - ${file(./module/product/functions.yml)}
+  - ${file(./module/blog/functions.yml)}
