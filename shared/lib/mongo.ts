@@ -1,26 +1,25 @@
-import debug from "debug";
+import { logger } from "./logger";
 import { connect, connection, connections, Mongoose } from "mongoose";
 
-const log = debug("mongo");
 let cachedConn: Mongoose;
 
 export const connectToDatabase = async () => {
   connection
     // Reject if an error occurred when trying to connect to MongoDB
     .on("error", (error) => {
-      log("error: connection to db failed");
+      logger.error("error: connection to db failed");
       throw error;
     })
     // Exit Process if there is no longer a Database Connection
     .on("close", () => {
-      log("error: connection to db lost");
+      logger.error("error: connection to db lost");
       process.exit(1);
     })
     // Connected to DB
     .once("open", () => {
       // Display connection information
       connections.map((info) =>
-        log(`connected to db ${info.host}:${info.port}/${info.name}`)
+        logger.info(`connected to db ${info.host}:${info.port}/${info.name}`)
       );
       // Return successful promise
       return cachedConn;
@@ -47,7 +46,7 @@ export const connectToDatabase = async () => {
       bufferMaxEntries: 0, // and MongoDB driver buffering
     });
   } else {
-    log("using cached database instance");
+    logger.info("using cached database instance");
     return cachedConn;
   }
 };

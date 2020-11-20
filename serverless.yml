@@ -4,6 +4,7 @@ frameworkVersion: "2"
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-prune-plugin
 
 provider:
   name: aws
@@ -16,6 +17,10 @@ provider:
 custom:
   webpack:
     webpackConfig: ./webpack.config.js
+    includeModules: true
+  prune:
+    automatic: true
+    number: 3
 
 functions:
   - ${file(./module/account/functions.yml)}
