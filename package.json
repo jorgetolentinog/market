@@ -6,7 +6,8 @@
     "start": "serverless offline start",
     "deploy": "serverless deploy",
     "swagger": "swagger-jsdoc -d docs/swagger.def.js ./module/**/*.ts -o docs/swagger.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "precommit": "tsc --noEmit && npm run swagger"
   },
   "dependencies": {
     "@middy/core": "^1.4.0",
@@ -35,7 +36,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsc --noEmit && npm run swagger"
+      "pre-commit": "npm run precommit"
     }
   }
 }
