@@ -20,13 +20,21 @@
  *           $ref: '#/definitions/Product'
  */
 
-import { APIGatewayProxyEvent, Context } from "aws-lambda";
+import { APIGatewayProxyEvent } from "aws-lambda";
 
+import middy from "@middy/core";
 import response from "@shared/lib/response";
+import { httpJsonErrorHandler, mongo } from "@shared/middleware";
 
-export const handler = async (
-  _event: APIGatewayProxyEvent,
-  _context: Context
-) => {
-  return response.json({});
+import { Product } from "../../models";
+import { productCreate } from "../../models/product";
+
+const controller = async (event: APIGatewayProxyEvent) => {
+  const body = await productCreate.validate(event.body);
+  const item = await Product.create(body);
+  return response.json(item, 201);
 };
+
+export const handler = middy(controller)
+  .use(mongo())
+  .use(httpJsonErrorHandler());

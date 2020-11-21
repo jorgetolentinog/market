@@ -3,6 +3,9 @@
     "title": "Market",
     "version": "latest"
   },
+  "schemes": [
+    "http"
+  ],
   "host": "localhost:3000",
   "basePath": "/dev",
   "swagger": "2.0",
@@ -61,6 +64,10 @@
     "Product": {
       "type": "object",
       "properties": {
+        "_id": {
+          "type": "string",
+          "readOnly": true
+        },
         "title": {
           "type": "string"
         },

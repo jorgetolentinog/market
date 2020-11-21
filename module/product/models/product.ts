@@ -4,6 +4,9 @@
  *   Product:
  *     type: object
  *     properties:
+ *       _id:
+ *         type: string
+ *         readOnly: true
  *       title:
  *         type: string
  *       description:
@@ -17,6 +20,7 @@
  */
 
 import { Document, model, Schema } from "mongoose";
+import * as Yup from "yup";
 
 export interface IProduct extends Document {
   title: String;
@@ -24,6 +28,12 @@ export interface IProduct extends Document {
   price: Number;
   createdAt?: Date;
 }
+
+export const productCreate = Yup.object<IProduct>().shape({
+  title: Yup.string().required(),
+  description: Yup.string(),
+  price: Yup.number().required(),
+});
 
 const schema = new Schema({
   title: String,
