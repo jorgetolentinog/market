@@ -1,7 +1,7 @@
 /**
  * @swagger
  * definitions:
- *   ProductCreate:
+ *   Product:
  *     type: object
  *     properties:
  *       title:
@@ -10,15 +10,10 @@
  *         type: string
  *       price:
  *         type: number
- *
- *   Product:
- *     allOf:
- *       - $ref: '#/definitions/ProductCreate'
- *       - type: object
- *         properties:
- *           createdAt:
- *             type: string
- *             format: date-time
+ *       createdAt:
+ *         type: string
+ *         format: date-time
+ *         readOnly: true
  */
 
 import { Document, model, Schema } from "mongoose";

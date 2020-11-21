@@ -8,8 +8,38 @@
   "swagger": "2.0",
   "paths": {
     "/product": {
+      "post": {
+        "description": "Crea un product",
+        "tags": [
+          "Product"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Product",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        }
+      },
       "get": {
         "description": "Devuelve lista de productos",
+        "tags": [
+          "Product"
+        ],
         "produces": [
           "application/json"
         ],
@@ -28,7 +58,7 @@
     }
   },
   "definitions": {
-    "ProductCreate": {
+    "Product": {
       "type": "object",
       "properties": {
         "title": {
@@ -39,24 +69,13 @@
         },
         "price": {
           "type": "number"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
         }
       }
-    },
-    "Product": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ProductCreate"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "createdAt": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        }
-      ]
     }
   },
   "responses": {},

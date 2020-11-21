@@ -3,6 +3,8 @@
  * /product:
  *   get:
  *     description: Devuelve lista de productos
+ *     tags:
+ *       - Product
  *     produces:
  *      - application/json
  *     responses:
