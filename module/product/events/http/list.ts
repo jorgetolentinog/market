@@ -1,3 +1,19 @@
+/**
+ * @swagger
+ * /product:
+ *   get:
+ *     description: Devuelve lista de productos
+ *     produces:
+ *      - application/json
+ *     responses:
+ *       200:
+ *         description: ok
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/definitions/Product'
+ */
+
 import { APIGatewayProxyEvent, Handler } from "aws-lambda";
 
 import middy from "@middy/core";
@@ -8,9 +24,11 @@ import { httpJsonErrorHandler, mongo } from "@shared/middleware";
 import { Product } from "../../models";
 
 const controller: Handler<APIGatewayProxyEvent> = async () => {
-  await Product.create({ title: "demo", date: new Date() });
+  await Product.create({
+    title: "demo",
+    price: 20,
+  });
   const items = await Product.find();
-
   return response.json(items);
 };
 

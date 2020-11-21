@@ -1,0 +1,66 @@
+{
+  "info": {
+    "title": "Market",
+    "version": "latest"
+  },
+  "host": "localhost:3000",
+  "basePath": "/dev",
+  "swagger": "2.0",
+  "paths": {
+    "/product": {
+      "get": {
+        "description": "Devuelve lista de productos",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ProductCreate": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        }
+      }
+    },
+    "Product": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProductCreate"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {},
+  "tags": []
+}

@@ -1,12 +1,11 @@
 {
   "name": "market",
   "version": "1.0.0",
-  "description": "Serverless webpack example using Typescript",
-  "main": "handler.js",
+  "license": "private",
   "scripts": {
     "start": "serverless offline start",
     "deploy": "serverless deploy",
-    "serverless": "serverless",
+    "swagger": "swagger-jsdoc -d docs/swagger.def.js ./module/**/*.ts -o docs/swagger.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -23,14 +22,20 @@
     "@types/mongoose": "^5.10.1",
     "@types/node": "^10.12.18",
     "fork-ts-checker-webpack-plugin": "^3.0.1",
+    "husky": "^4.3.0",
     "serverless": "^2.11.1",
     "serverless-offline": "^6.8.0",
     "serverless-prune-plugin": "^1.4.3",
     "serverless-webpack": "^5.2.0",
+    "swagger-jsdoc": "^5.0.1",
     "ts-loader": "^5.3.3",
     "typescript": "^3.2.4",
     "webpack": "^4.29.0",
     "webpack-node-externals": "^1.7.2"
   },
-  "license": "private"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run swagger"
+    }
+  }
 }
