@@ -12,7 +12,7 @@
   "paths": {
     "/product": {
       "post": {
-        "description": "Crea un product",
+        "description": "Crea un producto",
         "tags": [
           "Product"
         ],
