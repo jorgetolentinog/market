@@ -195,7 +195,7 @@
     },
     "responses": {
       "Error": {
-        "description": "Respuesta de error",
+        "description": "error",
         "content": {
           "application/json": {
             "schema": {
