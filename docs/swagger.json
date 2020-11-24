@@ -1,14 +1,14 @@
 {
+  "openapi": "3.0.0",
   "info": {
     "title": "Market",
     "version": "latest"
   },
-  "schemes": [
-    "http"
+  "servers": [
+    {
+      "url": "http://localhost:3000/dev"
+    }
   ],
-  "host": "localhost:3000",
-  "basePath": "/dev",
-  "swagger": "2.0",
   "paths": {
     "/product": {
       "post": {
@@ -16,24 +16,24 @@
         "tags": [
           "Product"
         ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Product",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Product"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "201": {
             "description": "created",
-            "schema": {
-              "$ref": "#/definitions/Product"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
             }
           }
         }
@@ -43,16 +43,16 @@
         "tags": [
           "Product"
         ],
-        "produces": [
-          "application/json"
-        ],
         "responses": {
           "200": {
             "description": "ok",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Product"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
               }
             }
           }
@@ -60,33 +60,32 @@
       }
     }
   },
-  "definitions": {
-    "Product": {
-      "type": "object",
-      "properties": {
-        "_id": {
-          "type": "string",
-          "readOnly": true
-        },
-        "title": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "price": {
-          "type": "number"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time",
-          "readOnly": true
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
         }
       }
     }
   },
-  "responses": {},
-  "parameters": {},
-  "securityDefinitions": {},
   "tags": []
 }

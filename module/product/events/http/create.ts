@@ -2,22 +2,21 @@
  * @swagger
  * /product:
  *   post:
- *     description: Crea un product
+ *     description: Crea un producto
  *     tags:
  *       - Product
- *     produces:
- *      - application/json
- *     parameters:
- *       - name: Product
- *         in: body
- *         required: true
- *         schema:
- *           $ref: '#/definitions/Product'
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
  *     responses:
  *       201:
  *         description: created
- *         schema:
- *           $ref: '#/definitions/Product'
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
  */
 
 import { APIGatewayProxyEvent } from "aws-lambda";

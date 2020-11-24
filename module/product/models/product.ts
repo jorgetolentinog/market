@@ -1,22 +1,23 @@
 /**
  * @swagger
- * definitions:
- *   Product:
- *     type: object
- *     properties:
- *       _id:
- *         type: string
- *         readOnly: true
- *       title:
- *         type: string
- *       description:
- *         type: string
- *       price:
- *         type: number
- *       createdAt:
- *         type: string
- *         format: date-time
- *         readOnly: true
+ * components:
+ *   schemas:
+ *     Product:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *           readOnly: true
+ *         title:
+ *           type: string
+ *         description:
+ *           type: string
+ *         price:
+ *           type: number
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           readOnly: true
  */
 
 import { Document, model, Schema } from "mongoose";

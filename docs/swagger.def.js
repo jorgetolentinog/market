@@ -1,9 +1,12 @@
 module.exports = {
+  openapi: "3.0.0",
   info: {
     title: "Market",
     version: "latest",
   },
-  schemes: ["http"],
-  host: "localhost:3000",
-  basePath: "/dev",
+  servers: [
+    {
+      url: "http://localhost:3000/dev",
+    },
+  ],
 };

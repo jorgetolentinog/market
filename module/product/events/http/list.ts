@@ -5,15 +5,14 @@
  *     description: Devuelve lista de productos
  *     tags:
  *       - Product
- *     produces:
- *      - application/json
  *     responses:
  *       200:
  *         description: ok
- *         schema:
- *           type: array
- *           items:
- *             $ref: '#/definitions/Product'
+ *         content:
+ *           application/json:
+ *             schema:
+ *               items:
+ *                 $ref: '#/components/schemas/Product'
  */
 
 import { APIGatewayProxyEvent, Handler } from "aws-lambda";
