@@ -1,10 +1,10 @@
 /**
  * @swagger
- * /product:
+ * /category:
  *   get:
- *     description: Devuelve lista de productos
+ *     description: Devuelve lista de categorias
  *     tags:
- *       - Product
+ *       - Category
  *     responses:
  *       200:
  *         description: ok
@@ -12,7 +12,7 @@
  *           application/json:
  *             schema:
  *               items:
- *                 $ref: '#/components/schemas/Product'
+ *                 $ref: '#/components/schemas/Category'
  */
 
 import { APIGatewayProxyEvent, Handler } from "aws-lambda";
@@ -21,10 +21,10 @@ import middy from "@middy/core";
 import response from "@shared/lib/response";
 import { httpJsonErrorHandler, mongo } from "@shared/middleware";
 
-import Product from "../../models/product";
+import Category from "../../models/category";
 
 const controller: Handler<APIGatewayProxyEvent> = async () => {
-  const items = await Product.find();
+  const items = await Category.find();
   return response.json(items);
 };
 

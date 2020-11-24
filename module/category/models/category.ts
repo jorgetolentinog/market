@@ -2,18 +2,14 @@
  * @swagger
  * components:
  *   schemas:
- *     Product:
+ *     Category:
  *       type: object
  *       properties:
  *         _id:
  *           type: string
  *           readOnly: true
- *         title:
- *           type: string
  *         description:
  *           type: string
- *         price:
- *           type: number
  *         createdAt:
  *           type: string
  *           format: date-time
@@ -23,24 +19,18 @@
 import { Document, model, Schema } from "mongoose";
 import * as Yup from "yup";
 
-export interface IProduct extends Document {
-  title: String;
+export interface ICategory extends Document {
   description?: String;
-  price: Number;
   createdAt?: Date;
 }
 
-export const schemaCreate = Yup.object<IProduct>().shape({
-  title: Yup.string().required(),
+export const schemaCreate = Yup.object<ICategory>().shape({
   description: Yup.string(),
-  price: Yup.number().required(),
 });
 
 const schema = new Schema({
-  title: String,
   description: String,
-  price: Number,
   createdAt: { type: Date, default: Date.now },
 });
 
-export default model<IProduct>("product", schema);
+export default model<ICategory>("category", schema);

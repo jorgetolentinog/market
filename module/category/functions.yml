@@ -1,0 +1,13 @@
+category-http-list:
+  handler: module/category/events/http/list.handler
+  events:
+    - http:
+        path: /category
+        method: GET
+
+category-http-create:
+  handler: module/category/events/http/create.handler
+  events:
+    - http:
+        path: /category
+        method: POST

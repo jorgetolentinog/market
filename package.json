@@ -5,7 +5,7 @@
   "scripts": {
     "start": "serverless offline start",
     "deploy": "serverless deploy",
-    "swagger": "swagger-jsdoc -d docs/swagger.def.js ./module/**/*.ts -o docs/swagger.json",
+    "swagger": "swagger-jsdoc -d docs/swagger.def.js ./module/**/*.ts ./shared/**/*.ts -o docs/swagger.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "precommit": "tsc --noEmit && npm run swagger"
   },
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
     "@types/debug": "^4.1.5",
+    "@types/http-errors": "^1.8.0",
     "@types/mongoose": "^5.10.1",
     "@types/node": "^10.12.18",
     "@types/yup": "^0.29.9",

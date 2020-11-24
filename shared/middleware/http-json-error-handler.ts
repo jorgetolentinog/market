@@ -1,8 +1,26 @@
-import { APIGatewayProxyEvent } from 'aws-lambda';
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Error:
+ *       type: object
+ *       properties:
+ *         error:
+ *           type: string
+ *   responses:
+ *     Error:
+ *       description: error
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Error'
+ */
 
-import middy from '@middy/core';
+import { APIGatewayProxyEvent } from "aws-lambda";
 
-import response from '../lib/response';
+import middy from "@middy/core";
+
+import response from "../lib/response";
 
 type HttpHandlerLambda = middy.HandlerLambda & {
   error: Error & {

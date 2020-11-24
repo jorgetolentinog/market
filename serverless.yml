@@ -25,6 +25,5 @@ custom:
     number: 3
 
 functions:
-  - ${file(./module/account/functions.yml)}
   - ${file(./module/product/functions.yml)}
-  - ${file(./module/blog/functions.yml)}
+  - ${file(./module/category/functions.yml)}

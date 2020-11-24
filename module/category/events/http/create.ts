@@ -1,22 +1,22 @@
 /**
  * @swagger
- * /product:
+ * /category:
  *   post:
- *     description: Crea un producto
+ *     description: Crea una categoria
  *     tags:
- *       - Product
+ *       - Category
  *     requestBody:
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Product'
+ *             $ref: '#/components/schemas/Category'
  *     responses:
  *       201:
  *         description: created
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Product'
+ *               $ref: '#/components/schemas/Category'
  */
 
 import { APIGatewayProxyEvent } from "aws-lambda";
@@ -25,11 +25,11 @@ import middy from "@middy/core";
 import response from "@shared/lib/response";
 import { httpJsonErrorHandler, mongo } from "@shared/middleware";
 
-import Product, { schemaCreate } from "../../models/product";
+import Category, { schemaCreate } from "../../models/category";
 
 const controller = async (event: APIGatewayProxyEvent) => {
   const body = await schemaCreate.validate(event.body);
-  const item = await Product.create(body);
+  const item = await Category.create(body);
   return response.json(item, 201);
 };
 
