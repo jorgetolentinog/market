@@ -69,7 +69,23 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Product"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Product"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "categories": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "format": "uuid"
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
           }
