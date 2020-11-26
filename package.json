@@ -7,7 +7,7 @@
     "deploy": "serverless deploy",
     "swagger": "swagger-jsdoc -d docs/swagger.def.js ./module/**/*.ts ./shared/**/*.ts -o docs/swagger.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "precommit": "tsc --noEmit && npm run swagger"
+    "precommit": "tsc --noEmit"
   },
   "dependencies": {
     "@middy/core": "^1.4.0",
