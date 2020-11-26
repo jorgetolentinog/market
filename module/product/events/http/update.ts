@@ -1,8 +1,8 @@
 /**
  * @swagger
  * /product/{id}:
- *   get:
- *     description: Devuelve lista de productos
+ *   put:
+ *     description: Actualiza un producto
  *     tags:
  *       - Product
  *     parameters:
@@ -11,6 +11,11 @@
  *         required: true
  *         schema:
  *           type: string
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Product'
  *     responses:
  *       200:
  *         description: ok
@@ -30,7 +35,7 @@ import middy from "@middy/core";
 import response from "@shared/lib/response";
 import { httpJsonErrorHandler, mongo } from "@shared/middleware";
 
-import Product from "../../models/product";
+import Product, { schemaCreate } from "../../models/product";
 
 export const schemaParams = Yup.object().shape({
   id: Yup.string().required(),
@@ -38,10 +43,13 @@ export const schemaParams = Yup.object().shape({
 
 const controller: Handler<APIGatewayProxyEvent> = async (event) => {
   const params = await schemaParams.validate(event.pathParameters);
-  const item = await Product.findById(params.id).populate("categories");
+  const body = await schemaCreate.validate(event.body);
+  const item = await Product.findByIdAndUpdate(params.id, body, { new: true });
   if (!item) {
     throw new createError.NotFound(`Product ${params.id} not found`);
   }
+
+  await item.populate("categories").execPopulate();
   return response.json(item);
 };
 

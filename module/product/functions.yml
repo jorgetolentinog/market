@@ -18,3 +18,10 @@ product-http-retrieve:
     - http:
         path: /product/{id}
         method: GET
+
+product-http-update:
+  handler: module/product/events/http/update.handler
+  events:
+    - http:
+        path: /product/{id}
+        method: PUT

@@ -9,7 +9,15 @@
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Product'
+ *             allOf:
+ *               - $ref: '#/components/schemas/Product'
+ *               - type: object
+ *                 properties:
+ *                   categories:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                       format: uuid
  *     responses:
  *       201:
  *         description: created
@@ -30,6 +38,7 @@ import Product, { schemaCreate } from "../../models/product";
 const controller = async (event: APIGatewayProxyEvent) => {
   const body = await schemaCreate.validate(event.body);
   const item = await Product.create(body);
+  await item.populate("categories").execPopulate();
   return response.json(item, 201);
 };
 

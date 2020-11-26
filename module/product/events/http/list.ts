@@ -24,7 +24,7 @@ import { httpJsonErrorHandler, mongo } from "@shared/middleware";
 import Product from "../../models/product";
 
 const controller: Handler<APIGatewayProxyEvent> = async () => {
-  const items = await Product.find();
+  const items = await Product.find().populate("categories");
   return response.json(items);
 };
 

@@ -139,6 +139,46 @@
             "$ref": "#/components/responses/Error"
           }
         }
+      },
+      "put": {
+        "description": "Actualiza un producto",
+        "tags": [
+          "Product"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          }
+        }
       }
     }
   },
@@ -176,6 +216,11 @@
           },
           "price": {
             "type": "number"
+          },
+          "categories": {
+            "type": "array",
+            "$ref": "#/components/schemas/Product",
+            "readOnly": true
           },
           "createdAt": {
             "type": "string",
