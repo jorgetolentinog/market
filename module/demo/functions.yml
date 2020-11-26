@@ -1,0 +1,6 @@
+demo-http-example:
+  handler: module/demo/events/http/demo.handler
+  events:
+    - http:
+        path: /demo
+        method: GET
