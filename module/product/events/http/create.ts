@@ -27,16 +27,17 @@
  *               $ref: '#/components/schemas/Product'
  */
 
-import { APIGatewayProxyEvent } from "aws-lambda";
+import { APIGatewayProxyEvent } from 'aws-lambda';
 
-import middy from "@middy/core";
-import response from "@shared/lib/response";
-import { httpJsonErrorHandler, mongo } from "@shared/middleware";
+import middy from '@middy/core';
+import response from '@shared/lib/response';
+import { httpJsonErrorHandler, mongo } from '@shared/middleware';
 
-import Product, { schemaCreate } from "../../models/product";
+import Product from '../../models/product';
+import { productSchema } from '../../validators/product';
 
 const controller = async (event: APIGatewayProxyEvent) => {
-  const body = await schemaCreate.validate(event.body);
+  const body = await productSchema.validate(event.body);
   const item = await Product.create(body);
   await item.populate("categories").execPopulate();
   return response.json(item, 201);

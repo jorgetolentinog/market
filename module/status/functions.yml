@@ -1,0 +1,6 @@
+status-http-list:
+  handler: module/status/events/http/list.handler
+  events:
+    - http:
+        path: /status
+        method: GET

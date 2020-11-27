@@ -22,22 +22,22 @@
  *         $ref: '#/components/responses/Error'
  */
 
-import { APIGatewayProxyEvent, Handler } from "aws-lambda";
-import * as createError from "http-errors";
-import * as Yup from "yup";
+import { APIGatewayProxyEvent, Handler } from 'aws-lambda';
+import * as createError from 'http-errors';
+import * as Yup from 'yup';
 
-import middy from "@middy/core";
-import response from "@shared/lib/response";
-import { httpJsonErrorHandler, mongo } from "@shared/middleware";
+import middy from '@middy/core';
+import response from '@shared/lib/response';
+import { httpJsonErrorHandler, mongo } from '@shared/middleware';
 
-import Product from "../../models/product";
+import Product from '../../models/product';
 
-export const schemaParams = Yup.object().shape({
+export const paramSchema = Yup.object().shape({
   id: Yup.string().required(),
 });
 
 const controller: Handler<APIGatewayProxyEvent> = async (event) => {
-  const params = await schemaParams.validate(event.pathParameters);
+  const params = await paramSchema.validate(event.pathParameters);
   const item = await Product.findById(params.id).populate("categories");
   if (!item) {
     throw new createError.NotFound(`Product ${params.id} not found`);

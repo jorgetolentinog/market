@@ -25,7 +25,6 @@
  */
 
 import { Document, model, Schema } from "mongoose";
-import * as Yup from "yup";
 import Category, { ICategory } from "@module/category/models/category";
 
 export interface IProduct extends Document {
@@ -35,13 +34,6 @@ export interface IProduct extends Document {
   categories?: String[] | ICategory[];
   createdAt?: Date;
 }
-
-export const schemaCreate = Yup.object<IProduct>().shape({
-  title: Yup.string().required(),
-  description: Yup.string(),
-  price: Yup.number().required(),
-  categories: Yup.array().of(Yup.string()),
-});
 
 const schema = new Schema({
   title: String,

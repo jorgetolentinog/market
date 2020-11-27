@@ -20,6 +20,7 @@ import { APIGatewayProxyEvent } from "aws-lambda";
 
 import middy from "@middy/core";
 
+import { logger } from "../lib/logger";
 import response from "../lib/response";
 
 type HttpHandlerLambda = middy.HandlerLambda & {
@@ -33,6 +34,7 @@ export const httpJsonErrorHandler: middy.Middleware<
   APIGatewayProxyEvent
 > = () => ({
   onError: async (handler: HttpHandlerLambda) => {
+    logger.error(`(http handler) ${handler.error}`);
     const statusCode = handler.error.statusCode || 400;
     handler.response = response.json(
       {

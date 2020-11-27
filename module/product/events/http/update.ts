@@ -35,15 +35,16 @@ import middy from "@middy/core";
 import response from "@shared/lib/response";
 import { httpJsonErrorHandler, mongo } from "@shared/middleware";
 
-import Product, { schemaCreate } from "../../models/product";
+import Product from "../../models/product";
+import { productSchema } from "../../validators/product";
 
-export const schemaParams = Yup.object().shape({
+export const paramSchema = Yup.object().shape({
   id: Yup.string().required(),
 });
 
 const controller: Handler<APIGatewayProxyEvent> = async (event) => {
-  const params = await schemaParams.validate(event.pathParameters);
-  const body = await schemaCreate.validate(event.body);
+  const params = await paramSchema.validate(event.pathParameters);
+  const body = await productSchema.validate(event.body);
   const item = await Product.findByIdAndUpdate(params.id, body, { new: true });
   if (!item) {
     throw new createError.NotFound(`Product ${params.id} not found`);

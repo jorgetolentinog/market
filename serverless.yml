@@ -24,8 +24,9 @@ custom:
         - "@types/aws-lambda"
   prune:
     automatic: true
-    number: 3
+    number: 1
 
 functions:
   - ${file(./module/product/functions.yml)}
   - ${file(./module/category/functions.yml)}
+  - ${file(./module/status/functions.yml)}

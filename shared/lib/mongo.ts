@@ -7,12 +7,12 @@ export const connectToDatabase = async () => {
   connection
     // Reject if an error occurred when trying to connect to MongoDB
     .on("error", (error) => {
-      logger.error("error: connection to db failed");
+      logger.error("connection to db failed");
       throw error;
     })
     // Exit Process if there is no longer a Database Connection
     .on("close", () => {
-      logger.error("error: connection to db lost");
+      logger.error("connection to db lost");
       // process.exit(1);
       throw new Error("MongoDB connection to db lost");
     })
