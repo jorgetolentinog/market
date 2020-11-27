@@ -29,5 +29,5 @@ const controller: Handler<APIGatewayProxyEvent> = async () => {
 };
 
 export const handler = middy(controller)
-  .use(mongo())
-  .use(httpJsonErrorHandler());
+  .use(httpJsonErrorHandler())
+  .use(mongo());

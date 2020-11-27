@@ -13,7 +13,8 @@ export const connectToDatabase = async () => {
     // Exit Process if there is no longer a Database Connection
     .on("close", () => {
       logger.error("error: connection to db lost");
-      process.exit(1);
+      // process.exit(1);
+      throw new Error("MongoDB connection to db lost");
     })
     // Connected to DB
     .once("open", () => {
@@ -33,18 +34,22 @@ export const connectToDatabase = async () => {
     // function calls thanks to `callbackWaitsForEmptyEventLoop`.
     // This means our Lambda function doesn't have to go through the
     // potentially expensive process of connecting to MongoDB every time.
-    cachedConn = await connect("mongodb://localhost:27017/myapp", {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      connectTimeoutMS: 10000,
-      // Buffering means mongoose will queue up operations if it gets
-      // disconnected from MongoDB and send them when it reconnects.
-      // With serverless, better to fail fast if not connected.
-      bufferCommands: false, // Disable mongoose buffering
-      bufferMaxEntries: 0, // and MongoDB driver buffering
-    });
+    cachedConn = await connect(
+      "mongodb://localhost:27017/myapp",
+      // "mongodb+srv://dbUser:dt2VuElSEr21BffF@cluster0.boziw.mongodb.net/market-dev?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        connectTimeoutMS: 10000,
+        // Buffering means mongoose will queue up operations if it gets
+        // disconnected from MongoDB and send them when it reconnects.
+        // With serverless, better to fail fast if not connected.
+        bufferCommands: false, // Disable mongoose buffering
+        bufferMaxEntries: 0, // and MongoDB driver buffering
+      }
+    );
   } else {
     logger.info("using cached database instance");
     return cachedConn;

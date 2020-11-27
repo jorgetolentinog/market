@@ -13,20 +13,15 @@ provider:
   region: us-east-1
   apiGateway:
     shouldStartNameWithService: true
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - "sqs:SendMessage"
-        - "sqs:GetQueueUrl"
-        - "sqs:ListQueues"
-      Resource: "arn:aws:sqs:${self:provider.region}:*:*"
 
 custom:
   serverless-offline:
     useChildProcesses: true
   webpack:
     webpackConfig: ./webpack.config.js
-    includeModules: true
+    includeModules:
+      forceExclude:
+        - "@types/aws-lambda"
   prune:
     automatic: true
     number: 3
@@ -34,11 +29,3 @@ custom:
 functions:
   - ${file(./module/product/functions.yml)}
   - ${file(./module/category/functions.yml)}
-  - ${file(./module/demo/functions.yml)}
-
-resources:
-  Resources:
-    MainQueue:
-      Type: AWS::SQS::Queue
-      Properties:
-        QueueName: myqueue

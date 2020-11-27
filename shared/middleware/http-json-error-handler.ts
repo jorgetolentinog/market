@@ -36,7 +36,7 @@ export const httpJsonErrorHandler: middy.Middleware<
     const statusCode = handler.error.statusCode || 400;
     handler.response = response.json(
       {
-        error: handler.error.message,
+        message: handler.error.message,
       },
       statusCode
     );

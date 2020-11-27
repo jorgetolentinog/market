@@ -5,6 +5,7 @@
   "scripts": {
     "start": "serverless offline start",
     "deploy": "serverless deploy",
+    "webpack": "serverless webpack",
     "swagger": "swagger-jsdoc -d docs/swagger.def.js ./module/**/*.ts ./shared/**/*.ts -o docs/swagger.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "precommit": "tsc --noEmit"
