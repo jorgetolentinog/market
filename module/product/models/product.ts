@@ -16,8 +16,8 @@
  *           type: number
  *         categories:
  *           type: array
- *           $ref: '#/components/schemas/Product'
- *           readOnly: true
+ *           items:
+ *             $ref: '#/components/schemas/Category'
  *         createdAt:
  *           type: string
  *           format: date-time
