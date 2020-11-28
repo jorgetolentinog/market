@@ -1,6 +1,8 @@
-import * as mongoose from "mongoose";
+import * as mongoose from 'mongoose';
 
-import { logger } from "./logger";
+import config from '@module/config';
+
+import { logger } from './logger';
 
 export const connectToDatabase = async () => {
   if (mongoose.connection.readyState === 1) {
@@ -9,7 +11,7 @@ export const connectToDatabase = async () => {
   }
 
   logger.info("using new database connection");
-  await mongoose.connect("mongodb://localhost:27017/myapp", {
+  await mongoose.connect(config.MONGO_URL, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,

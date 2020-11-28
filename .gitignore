@@ -3,6 +3,5 @@ node_modules
 
 # Serverless
 .serverless
-
-# Webpack directories
 .webpack
+.env

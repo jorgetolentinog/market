@@ -2,6 +2,7 @@ service: marketplace
 frameworkVersion: "2"
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
   - serverless-prune-plugin
