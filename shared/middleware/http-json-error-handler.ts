@@ -16,12 +16,12 @@
  *             $ref: '#/components/schemas/Error'
  */
 
-import { APIGatewayProxyEvent } from "aws-lambda";
+import { APIGatewayProxyEvent } from 'aws-lambda';
 
-import middy from "@middy/core";
+import middy from '@middy/core';
 
-import { logger } from "../lib/logger";
-import response from "../lib/response";
+import { logger } from '../lib/logger';
+import response from '../lib/response';
 
 type HttpHandlerLambda = middy.HandlerLambda & {
   error: Error & {
@@ -34,7 +34,7 @@ export const httpJsonErrorHandler: middy.Middleware<
   APIGatewayProxyEvent
 > = () => ({
   onError: async (handler: HttpHandlerLambda) => {
-    logger.error(`(http handler) ${handler.error}`);
+    logger.error(`http handler:`, handler.error);
     const statusCode = handler.error.statusCode || 400;
     handler.response = response.json(
       {
