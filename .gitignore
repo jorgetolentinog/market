@@ -5,3 +5,7 @@ node_modules
 .serverless
 .webpack
 .env
+
+# Tests
+coverage
+globalConfig.json

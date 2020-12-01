@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 import config from '@module/config';
 
@@ -16,7 +16,7 @@ export const connectToDatabase = async () => {
     useCreateIndex: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-    connectTimeoutMS: 10000,
+    connectTimeoutMS: 5000,
     // Buffering means mongoose will queue up operations if it gets
     // disconnected from MongoDB and send them when it reconnects.
     // With serverless, better to fail fast if not connected.

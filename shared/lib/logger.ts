@@ -1,4 +1,4 @@
-import * as winston from 'winston';
+import * as winston from "winston";
 
 const LEVEL = Symbol.for("level");
 const MESSAGE = Symbol.for("message");
@@ -21,7 +21,7 @@ if (process.env.IS_OFFLINE) {
 }
 
 export const logger = winston.createLogger({
-  level: process.env.LOG_LEVEL || "info",
+  level: process.env.LOG_LEVEL || "error",
   format: winston.format.combine(winston.format.timestamp(), ...formats),
   transports: [
     new winston.transports.Console({
