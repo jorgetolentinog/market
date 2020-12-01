@@ -1,4 +1,4 @@
-import { lambdaWrapper } from 'serverless-jest-plugin';
+import lambdaWrapper from 'lambda-wrapper';
 
 import Product from '../../../models/product';
 import * as mod from '../create';

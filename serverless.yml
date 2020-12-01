@@ -5,7 +5,6 @@ plugins:
   - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
-  - serverless-jest-plugin
   - serverless-prune-plugin
 
 provider:
