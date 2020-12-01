@@ -6,7 +6,6 @@
     "start": "LOG_LEVEL=info serverless offline start",
     "deploy": "serverless deploy",
     "serverless": "serverless",
-    "serverless:webpack": "serverless webpack",
     "test": "jest --runInBand --ci --coverage --detectOpenHandles --forceExit ",
     "docs:swagger": "swagger-jsdoc -d docs/swagger.def.js ./module/**/*.ts ./shared/**/*.ts -o docs/swagger.json",
     "commit:pre": "tsc --noEmit"
