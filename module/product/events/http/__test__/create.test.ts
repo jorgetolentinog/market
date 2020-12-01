@@ -1,14 +1,12 @@
-import jestPlugin from 'serverless-jest-plugin';
+import { lambdaWrapper } from 'serverless-jest-plugin';
 
 import Product from '../../../models/product';
 import * as mod from '../create';
 
-const lambdaWrapper = jestPlugin.lambdaWrapper;
-
 const wrapped = lambdaWrapper.wrap(mod);
 
 describe("product events http create", () => {
-  it("deberia quedar registrado en la bd", async (done) => {
+  it("deberia quedar registrado en la bd", async () => {
     const response = await wrapped.run({
       body: JSON.stringify({
         title: "demo",
@@ -21,6 +19,5 @@ describe("product events http create", () => {
     const data = JSON.parse(response.body);
     const exists = await Product.exists({ id: data.id });
     expect(exists).toEqual(true);
-    done();
   });
 });
