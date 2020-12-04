@@ -28,10 +28,10 @@ import { Document, model, Schema } from "mongoose";
 import Category, { ICategory } from "@module/category/models/category";
 
 export interface IProduct extends Document {
-  title: String;
-  description?: String;
-  price: Number;
-  categories?: String[] | ICategory[];
+  title: string;
+  description?: string;
+  price: number;
+  categories?: string[] | ICategory[];
   createdAt?: Date;
 }
 

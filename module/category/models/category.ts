@@ -20,7 +20,7 @@ import { Document, model, Schema } from "mongoose";
 import * as Yup from "yup";
 
 export interface ICategory extends Document {
-  description?: String;
+  description?: number;
   createdAt?: Date;
 }
 
