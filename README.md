@@ -18,7 +18,9 @@ make mongo
 
 ### Ejecutar proyecto
 
-Ejecuta proyecto para desarrollo
+Crea tu propio archivo `.env` basado en `.env.example`
+
+Ejecuta el proyecto en modo desarrollo
 ```
 npm start
 ```
